@@ -4,8 +4,8 @@
   "description": "This application connects devices via Modbus",
   "main": "index.js",
   "dependencies": {
-    "modbus-serial": "^7.7.2",
-    "serialport": "^7.1.5"
+    "modbus-serial": "^8.0.23",
+    "serialport": "^13.0.0"
   },
   "devDependencies": {
     "osiota-dev": "^1.x"
