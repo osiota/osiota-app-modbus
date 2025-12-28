@@ -75,16 +75,17 @@ exports.init = function(node, app_config, main, host_info) {
 
 	var m = new modbus.modbus(app_config);
 	m.onerror = function(err) {
-		console.error("modbus, error:", err.stack || err);
+		console.error("modbus, error msg", err.message);
+		console.error("modbus, error:", err);
 
 		if (typeof err.message === "string" &&
 				err.message.match(/^Timed out/))
 			return false;
 
-		if (this.close)
-			this.close();
-
-		if (err.message === "Port Not Open") {
+		//if (this.close)
+		//	this.close();
+		if (typeof err.message === "string" &&
+				err.message.match(/No such file or director/)) {
 			return _this._application_interface.handle_error(err);
 		}
 
