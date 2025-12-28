@@ -87,7 +87,7 @@ exports.init = function(node, app_config, main, host_info) {
 			this.close();
 
 		console.info("modbus, restarting ...");
-		_this._reinit_delay(5000);
+		_this._application_interface.handle_restart();
 		return true;
 	};
 
