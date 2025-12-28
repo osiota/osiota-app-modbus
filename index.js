@@ -81,14 +81,14 @@ exports.init = function(node, app_config, main, host_info) {
 				err.message.match(/^Timed out/))
 			return false;
 
-		// err.message == "Port Not Open"
-
 		if (this.close)
 			this.close();
 
-		console.info("modbus, restarting ...");
-		_this._application_interface.handle_restart();
-		return true;
+		if (err.message === "Port Not Open") {
+			return _this._application_interface.handle_error(err);
+		}
+
+		return _this._application_interface.handle_restart(5000);
 	};
 
 	var map_itemtype = function(type) {
